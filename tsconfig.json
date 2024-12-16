@@ -19,7 +19,9 @@
     "strictNullChecks": false,
     "noImplicitAny": false,
     "strictBindCallApply": false,
-    "forceConsistentCasingInFileNames": false,
+    "types": [
+      "node"
+    ],
     "noFallthroughCasesInSwitch": false
   }
 }
