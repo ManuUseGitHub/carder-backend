@@ -6,5 +6,5 @@ CREATE TABLE "Lov" (
     "issuer" TEXT,
     "book" TEXT,
 
-    CONSTRAINT "Lov_pkey" PRIMARY KEY ("key") 
+    CONSTRAINT "Lov_pkey" PRIMARY KEY ("key")
 );
