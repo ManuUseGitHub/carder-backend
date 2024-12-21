@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import { randomUUID } from 'crypto';
 import { AddLOVsDTO } from 'src/dtos/addLOVs';
 import { Lov } from 'src/models/lov.entity';
+import { v4 as uuidv4 } from 'uuid';
 
 @Injectable()
 export class LovService {
@@ -48,7 +48,7 @@ export class LovService {
   }
   generateNewLov(prefix: string, value) {
     return {
-      key: `${prefix}-${randomUUID()}`,
+      key: `${prefix}-${uuidv4()}`,
       value: value,
       shared: false,
     };
