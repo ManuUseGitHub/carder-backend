@@ -8,8 +8,8 @@
   "scripts": {
     "build:local": "nest build",
     "build:remote": "npx @nestjs/cli build",
-    "data:schema": "prisma generate prod",
-    "data:push": "prisma db push",
+    "data:schema": "npx prisma generate prod",
+    "data:push": "npx prisma db push",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
     "start:dev": "nest start --watch",
