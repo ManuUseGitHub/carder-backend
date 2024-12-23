@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { AddLOVsDTO } from '../dtos/addLOVs';
-import { Lov } from '../models/lov.entity';
+import { AddLOVsDTO } from 'src/dtos/addLOVs';
+import { Lov } from 'src/models/lov.entity';
 import { v4 as uuidv4 } from 'uuid';
 
 @Injectable()

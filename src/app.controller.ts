@@ -1,35 +1,51 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Post,
+  UseInterceptors,
+  ValidationPipe,
+} from '@nestjs/common';
 import { AppService } from './app.service';
 import { API_VERSION_ID } from './constents';
 import { AddLOVsDTO } from './dtos/addLOVs';
-import { PrismaClient } from '@prisma/client';
+import { LovService } from './lov/lov.service';
+import { PrismaService } from './services/prisma-service/prisma-service.service';
+import { Prisma, PrismaClient } from '@prisma/client';
+import { LoggingInterceptor } from './interceptors/loggingInterceptor/logging.interceptor';
 
+@UseInterceptors(LoggingInterceptor)
 @Controller(API_VERSION_ID)
 export class AppController {
-  constructor(private readonly appService: AppService) {}
+  constructor(
+    private readonly appService: AppService,
+    private lovService: LovService,
+    private prismaService: PrismaService,
+  ) {}
 
-  /*@Get('test')
+  @Get()
   getHello() {
     return this.appService.getHello();
-  }*/
+  }
 
   @Get('test')
-  getHello() {
+  getLovs() {
     try {
-      const prisma = new PrismaClient({
-        log: ['query', 'info', 'warn', 'error'],
-      });
-      prisma.$on('query', (e) => {
-        console.log('Query: ' + e.query);
-        console.log('Params: ' + e.params);
-        console.log('Duration: ' + e.duration + 'ms');
-      });
-      const result = prisma.Lov.findMany();
+      const prisma = new PrismaClient();
+      const result = prisma.lov.findMany();
       console.log('done');
       return result;
     } catch (e) {
-      console.error(e);
-      return e;
+      throw e;
     }
+  }
+
+  @Post('test')
+  addLOVs(@Body() lovs: AddLOVsDTO) {
+    const result = this.lovService.parseCharacteristics(lovs);
+    const stored = this.prismaService.lov.createManyAndReturn({
+      data: result,
+    });
+    return stored;
   }
 }

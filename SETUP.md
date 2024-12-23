@@ -1,8 +1,5 @@
 # Setup
 ```bash
-# avoid permission denied when modifying the project files
-sudo chown -R $USER . 
-
 $ npm i nest -g
 
 # create your new project
