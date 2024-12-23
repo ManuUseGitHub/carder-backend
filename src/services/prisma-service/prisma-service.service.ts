@@ -1,7 +1,7 @@
 import { Injectable, OnModuleInit, UseInterceptors } from '@nestjs/common';
 import { PrismaClient } from '@prisma/client';
 import {
-  appendMessage,
+  appendLogs,
   LoggingInterceptor,
 } from 'src/interceptors/loggingInterceptor/logging.interceptor';
 
@@ -11,7 +11,7 @@ export class PrismaService extends PrismaClient implements OnModuleInit {
     try {
       await this.$connect();
     } catch (err) {
-      appendMessage(err.toString());//
+      appendLogs(err.toString()); //
     }
   }
 }

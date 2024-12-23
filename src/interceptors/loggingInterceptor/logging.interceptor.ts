@@ -14,14 +14,14 @@ export class LoggingInterceptor implements NestInterceptor {
   intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
     return next.handle().pipe(
       catchError((err) => {
-        appendMessage(err + '\n');
+        appendLogs(err + '\n');
         throw new Error(err);
       }),
     );
   }
 }
-export function appendMessage(message: string) {
-  fs.appendFile('message.txt', message, function (err) {
+export function appendLogs(message: string) {
+  fs.appendFile('logs', message, function (err) {
     if (err) throw err;
   });
 }
