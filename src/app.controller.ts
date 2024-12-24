@@ -3,8 +3,8 @@ import {
   Controller,
   Get,
   Post,
+  UseGuards,
   UseInterceptors,
-  ValidationPipe,
 } from '@nestjs/common';
 import { AppService } from './app.service';
 import { API_VERSION_ID } from './constents';
@@ -13,9 +13,14 @@ import { LovService } from './lov/lov.service';
 import { PrismaService } from './services/prisma-service/prisma-service.service';
 import { PrismaClient } from '@prisma/client';
 import { LoggingInterceptor } from './interceptors/loggingInterceptor/logging.interceptor';
+import { AccessReservedToAccessTokenGuard } from './guards/access-reserved-to-access-token/access-reserved-to-access-token.guard';
+import { hexToUtf8 } from './hexHelper';
 
+const textAPIVersion = hexToUtf8(API_VERSION_ID);
+
+@UseGuards(AccessReservedToAccessTokenGuard)
 @UseInterceptors(LoggingInterceptor)
-@Controller(API_VERSION_ID)
+@Controller([API_VERSION_ID, textAPIVersion])
 export class AppController {
   constructor(
     private readonly appService: AppService,

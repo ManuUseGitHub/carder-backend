@@ -1,1 +1,1 @@
-export const API_VERSION_ID = "api/V2"
+export const API_VERSION_ID = '707269736d612f5631'; // prisma/V1
