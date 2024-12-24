@@ -11,7 +11,7 @@ import { API_VERSION_ID } from './constents';
 import { AddLOVsDTO } from './dtos/addLOVs';
 import { LovService } from './lov/lov.service';
 import { PrismaService } from './services/prisma-service/prisma-service.service';
-import { Prisma, PrismaClient } from '@prisma/client';
+import { PrismaClient } from '@prisma/client';
 import { LoggingInterceptor } from './interceptors/loggingInterceptor/logging.interceptor';
 
 @UseInterceptors(LoggingInterceptor)
