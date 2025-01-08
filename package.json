@@ -8,14 +8,19 @@
   "scripts": {
     "build:local": "NODE_ENV=development nest build",
     "build:remote": "npx @nestjs/cli build",
-    "data:schema": "NODE_ENV=production dotenv -e .env.production npx prisma generate prod",
+    
+    "data:schema": "npx prisma generate prod",
+    "data:migrate": "npx prisma migrate prod",
+    "data:push": "npx prisma db push",
+
     "data:schema-dev": "NODE_ENV=development dotenv -e .env.development npx prisma generate dev",
-    "data:migrate": "NODE_ENV=production dotenv -e .env.production npx prisma migrate prod",
     "data:migrate-dev": "NODE_ENV=development dotenv -e .env.development npx prisma migrate dev",
-    "data:push": "NODE_ENV=production dotenv -e .env.production npx prisma db push",
     "data:push-dev": "NODE_ENV=development dotenv -e .env.development npx prisma db push",
+    
     "data:schema-test": "NODE_ENV=test npx prisma generate --env-file='./src/config/envs/test/.env'",
-    "data:push-test": "npx prisma db push",
+    "data:migrate-test": "NODE_ENV=test dotenv -e .env.test npx prisma migrate dev",
+    "data:push-test": "NODE_ENV=test dotenv -e .env.test npx prisma db push",
+    
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
     "start:dev": "NODE_ENV=development nest start --watch",
