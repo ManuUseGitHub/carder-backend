@@ -8,19 +8,15 @@
   "scripts": {
     "build:local": "NODE_ENV=development nest build",
     "build:remote": "npx @nestjs/cli build",
-    
     "data:schema": "npx prisma generate prod",
     "data:migrate": "npx prisma migrate",
     "data:push": "npx prisma db push",
-
     "data:schema-dev": "NODE_ENV=development dotenv -e .env.development npx prisma generate dev",
     "data:migrate-dev": "NODE_ENV=development dotenv -e .env.development npx prisma migrate dev",
     "data:push-dev": "NODE_ENV=development dotenv -e .env.development npx prisma db push",
-    
     "data:schema-test": "NODE_ENV=test npx prisma generate --env-file='./src/config/envs/test/.env'",
     "data:migrate-test": "NODE_ENV=test dotenv -e .env.test npx prisma migrate dev",
     "data:push-test": "NODE_ENV=test dotenv -e .env.test npx prisma db push",
-    
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
     "start:dev": "NODE_ENV=development nest start --watch",
@@ -42,9 +38,7 @@
     "@prisma/client": "^6.1.0",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.1",
-    "crypto": "^1.0.1",
     "dotenv": "^16.4.7",
-    "i": "^0.3.7",
     "npm": "^11.0.0",
     "prisma": "^6.1.0",
     "reflect-metadata": "^0.2.0",
