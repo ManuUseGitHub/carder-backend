@@ -1,9 +1,6 @@
 import { Injectable, OnModuleInit, UseInterceptors } from '@nestjs/common';
 import { PrismaClient } from '@prisma/client';
-import {
-  appendLogs,
-  LoggingInterceptor,
-} from 'src/interceptors/loggingInterceptor/logging.interceptor';
+import { appendLogs } from '../../interceptors/loggingInterceptor/logging.interceptor';
 
 @Injectable()
 export class PrismaService extends PrismaClient implements OnModuleInit {

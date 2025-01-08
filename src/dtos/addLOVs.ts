@@ -8,3 +8,5 @@ export class AddLOVsDTO {
   'tags': string[];
   'difficulty': string[];
 }
+
+export type Characteristics = { [x: string]: string[] };

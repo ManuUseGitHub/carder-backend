@@ -1,7 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { LovService } from './lov/lov.service';
 
 describe('AppController', () => {
   let appController: AppController;
@@ -9,7 +7,6 @@ describe('AppController', () => {
   beforeEach(async () => {
     const app: TestingModule = await Test.createTestingModule({
       controllers: [AppController],
-      providers: [AppService, LovService],
     }).compile();
 
     appController = app.get<AppController>(AppController);
@@ -23,3 +20,13 @@ describe('AppController', () => {
     });
   });
 });
+
+/*
+{
+		uid:"aSO3CKrmpIR52eJwxyhrCzP4isA3",
+		displayName:"",
+		photoURL:"",
+		phoneNumber:"",
+		email:"jean.luc.e.verhan@gmail.com"
+	}
+*/

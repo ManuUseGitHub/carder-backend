@@ -1,6 +1,8 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { LovService } from './lov.service';
 import { UUID_PATTERN } from '../uuidHelper';
+import { PrismaService } from '../services/prisma/prisma.service';
+import { ConfigModule } from '../config/config.module';
 const characteristics = require('../resources/characteristics.json');
 
 describe('LovService', () => {
@@ -8,7 +10,8 @@ describe('LovService', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [LovService],
+      imports: [ConfigModule],
+      providers: [PrismaService, LovService],
     }).compile();
 
     service = module.get<LovService>(LovService);
@@ -21,6 +24,8 @@ describe('LovService', () => {
   it.each([
     ['articles', 'ARTI'],
     ['article', 'ARTI'],
+
+    ['role', 'ROLE'],
     ['something containing article', 'UNKN'],
 
     ['fromTo', 'FRM2'],
@@ -36,6 +41,16 @@ describe('LovService', () => {
       expect(service.extractPrefix(challange)).toBe(expectation);
     },
   );
+
+  it('Results to a no addition when the key code unmatches', () => {
+    const values = ['test', 'test2', 'test3', 'test4'];
+    expect(
+      service.parseCharacteristics({
+        invalid: values,
+      }).length,
+    ).not.toBe(values.length);
+  });
+
   it('should match the format', () => {
     const prefix = service.extractPrefix('article');
     const lov = service.generateNewLov(prefix, 'der');

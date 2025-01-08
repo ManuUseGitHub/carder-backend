@@ -11,11 +11,40 @@ $ cd my-project
 # Once un the editor, open the terminal and run the next command to grant you the ownership of the project to conturn the Sudo problem
 $ sudo chown -R $USER .
 ```
+
+# cheat sheet DB
+```bash
+$ npm i prisma
+$ npx prisma init --datasource-provider postgresql
+
+# create postgres SERVER in docker container
+# /!\ set a custom port to avoid connexion problem => 5433:5432
+# the default port has to be set in second position
+$ docker run --name postgres-test -e POSTGRES_PASSWORD=postgres -d -p 5433:5432 postgres
+
+# create testdb on server
+$ docker exec -it postgres-test psql -U postgres -c 'CREATE DATABASE testdb;'
+
+# see pid of running port 5432
+$ sudo lsof -i :5432
+$ sudo kill [pid]
+
+# migrate new version of the db
+$ npx prisma migrate dev --name init
+
+# install the prisma client
+$ npm i @prisma/client
+
+# (re)generate the client
+$ npx prisma generate
+```
+
 # Add Quality of life to your development
 ## Allow Hot Module Replacement
 ```bash
 $ npm i --save-dev webpack-node-externals run-script-webpack-plugin webpack
 ```
+
 ### Configuration
 Once the installation is complete, create a `webpack-hmr.config.js` file in the root directory of your application.
 

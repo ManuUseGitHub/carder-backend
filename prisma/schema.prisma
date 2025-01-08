@@ -15,10 +15,22 @@ datasource db {
 
 model Lov {
   key String @id
-  
-  value String
+
+  value  String
   shared Boolean @default(false)
 
   issuer String?
-  book String?
+  book   String?
+}
+
+model User {
+  email       String    @id
+  uid         String    @unique
+  photoUrl    String?
+  phoneNumber String?
+  displayName String    @unique
+  dateOfBirth DateTime?
+  dateJoin    DateTime?
+  title       String?
+  biblibio    String?
 }

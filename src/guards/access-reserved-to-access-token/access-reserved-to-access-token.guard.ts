@@ -9,7 +9,8 @@ export class AccessReservedToAccessTokenGuard implements CanActivate {
     const request = context.switchToHttp().getRequest();
     const authorization = request.header('Authorization');
 
-    if (authorization !== "Bearer " +process.env.ACCESS_TOKEN) {
+    if (authorization !== 'Bearer ' + process.env.ACCESS_TOKEN) {
+      console.log(authorization, '\n', 'Bearer ' + process.env.ACCESS_TOKEN);
       return false;
     }
     return true;
