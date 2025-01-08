@@ -6,22 +6,28 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
-    "build:local": "NODE_ENV=development nest build",
+    "nowarn": "npm install --loglevel=error",
+
     "build:remote": "npx @nestjs/cli build",
+    "start": "nest start",
+    "start:prod": "NODE_ENV=production node dist/main",
     "data:schema": "npx prisma generate prod",
     "data:migrate": "npx prisma migrate",
     "data:push": "npx prisma db push",
+
+    "build:local": "NODE_ENV=development nest build",
+    "start:dev": "NODE_ENV=development nest start --watch",
     "data:schema-dev": "NODE_ENV=development dotenv -e .env.development npx prisma generate dev",
     "data:migrate-dev": "NODE_ENV=development dotenv -e .env.development npx prisma migrate dev",
     "data:push-dev": "NODE_ENV=development dotenv -e .env.development npx prisma db push",
+
     "data:schema-test": "NODE_ENV=test npx prisma generate --env-file='./src/config/envs/test/.env'",
     "data:migrate-test": "NODE_ENV=test dotenv -e .env.test npx prisma migrate dev",
     "data:push-test": "NODE_ENV=test dotenv -e .env.test npx prisma db push",
+
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
-    "start": "nest start",
-    "start:dev": "NODE_ENV=development nest start --watch",
     "start:debug": "nest start --debug --watch",
-    "start:prod": "NODE_ENV=production node dist/main",
+    
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "test": "NODE_ENV=test jest",
     "test:watch": "NODE_ENV=test dotenv -e .env.test -- jest --watch",
