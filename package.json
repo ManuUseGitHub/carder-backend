@@ -10,7 +10,7 @@
     "build:remote": "npx @nestjs/cli build",
     
     "data:schema": "npx prisma generate prod",
-    "data:migrate": "npx prisma migrate prod",
+    "data:migrate": "npx prisma migrate",
     "data:push": "npx prisma db push",
 
     "data:schema-dev": "NODE_ENV=development dotenv -e .env.development npx prisma generate dev",
