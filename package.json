@@ -6,8 +6,9 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
-    "nowarn": "npm install --loglevel=error",
+    "nowarn": "npm install --loglevel=error --no-update-notifier",
 
+    "build": "nest build",
     "build:remote": "npx @nestjs/cli build",
     "start": "nest start",
     "start:prod": "NODE_ENV=production node dist/main",
@@ -27,7 +28,7 @@
 
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start:debug": "nest start --debug --watch",
-    
+
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "test": "NODE_ENV=test jest",
     "test:watch": "NODE_ENV=test dotenv -e .env.test -- jest --watch",
